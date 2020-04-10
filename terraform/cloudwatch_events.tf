@@ -4,7 +4,7 @@
 resource "aws_cloudwatch_event_rule" "illinois" {
   name                = "ill-run"
   description         = "kicks off the illinois covid-19 case function"
-  schedule_expression = "cron(0 21 ? * * *)"
+  schedule_expression = "cron(0 23 ? * * *)"
 }
 
 resource "aws_cloudwatch_event_target" "illinois" {
@@ -23,7 +23,7 @@ resource "aws_lambda_permission" "illinois" {
 resource "aws_cloudwatch_event_rule" "ohio" {
   name                = "ohio-run"
   description         = "kicks off the ohio covid-19 case function"
-  schedule_expression = "cron(30 19 ? * * *)"
+  schedule_expression = "cron(0 21 ? * * *)"
 }
 
 resource "aws_cloudwatch_event_target" "ohio" {
@@ -42,7 +42,7 @@ resource "aws_lambda_permission" "ohio" {
 resource "aws_cloudwatch_event_rule" "county" {
   name                = "county-run"
   description         = "kicks off the county covid-19 case function"
-  schedule_expression = "cron(0 1 ? * * *)"
+  schedule_expression = "cron(15 2 ? * * *)"
 }
 
 resource "aws_cloudwatch_event_target" "county" {
