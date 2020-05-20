@@ -23,7 +23,7 @@ resource "aws_lambda_permission" "illinois" {
 resource "aws_cloudwatch_event_rule" "ohio" {
   name                = "ohio-run"
   description         = "kicks off the ohio covid-19 case function"
-  schedule_expression = "cron(0 21 ? * * *)"
+  schedule_expression = "cron(0 22 ? * * *)"
 }
 
 resource "aws_cloudwatch_event_target" "ohio" {

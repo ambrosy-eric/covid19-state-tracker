@@ -27,7 +27,8 @@ class Tracking(object):
         self.resources[self.state]["TotalTested"] = data['totalTestResults']
         self.resources[self.state]["ConfirmedCases"] = data['positive']
         self.resources[self.state]["ConfirmedDeaths"] = data['death']
-        self.resources[self.state]["Hopsitizations"] = data['hospitalizedCurrently']
-        self.resources[self.state]["InIcu"] = data['inIcuCurrently']
+        self.resources[self.state]["Hopsitizations"] = data['hospitalizedCumulative']
+        self.resources[self.state]["InIcu"] = data['inIcuCumulative']
+        self.resources[self.state]["Recovered"] = data['recovered']
 
         return self.resources
