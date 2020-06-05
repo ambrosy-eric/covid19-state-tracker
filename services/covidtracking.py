@@ -11,18 +11,19 @@ class Tracking(object):
     def __init__(self, state=None, active=True):
         self.active = active
         self.state = state
-        self.url = 'http://covidtracking.com/api/states?state=%s' % state
+        self.url = 'http://covidtracking.com/api/states?state=%s' % state.lower()
         self.resources = {}
 
     def get_case_date(self):
-        response = requests.get(self.url)
-        if response.status_code != 200:
-            log.error(f'{response.status_code} returned')
-            return
+        try:
+            response = requests.get(self.url)
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            raise (e.response.text)
         data = response.json()
         if data['state'] != self.state:
             log.error(f'Provided state: {self.state} does not match response data')
-            return
+            raise Exception('Invalid State returned')
         self.resources[self.state] = {}
         self.resources[self.state]["TotalTested"] = data['totalTestResults']
         self.resources[self.state]["ConfirmedCases"] = data['positive']
